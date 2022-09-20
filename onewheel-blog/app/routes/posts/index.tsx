@@ -1,5 +1,5 @@
+import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-
 export const loader = async () => {
   const posts = [
     {
@@ -11,13 +11,9 @@ export const loader = async () => {
       title: "My Second Post",
     },
   ];
-  const postsString = JSON.stringify({ posts });
-  return new Response(postsString, {
-    headers: {
-      "content-type": "apllication/json",
-    },
-  });
+  return json({ posts });
 };
+
 export default function pstsRoute() {
   const { posts } = useLoaderData();
   console.log({ posts });
